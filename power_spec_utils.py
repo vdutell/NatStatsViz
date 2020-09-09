@@ -13,6 +13,7 @@ def make_onef_img_grey(shape, amp_alpha=1, k=1):
     ampspec = onef_amp*np.exp(1j*rand_phase)
     img = np.real(np.fft.ifft2(np.fft.ifftshift(ampspec)))
     #remap to [0,1]
+    img = img - np.min(img)
     img = img/np.max(img)
     return img
 
