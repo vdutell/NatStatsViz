@@ -4,7 +4,10 @@ def make_onef_amp(shape, amp_alpha=1, k=1):
     y, x = np.indices(shape)
     center = np.array(shape)/2
     r = np.hypot(x - center[1], y - center[0])
-    amp = k/(1+r**amp_alpha)
+    if(amp_alpha >=0):
+        amp = k/(1+r**amp_alpha)
+    else:
+        amp = k * (1+r**(-1*amp_alpha))
     return amp
 
 def make_onef_img_grey(shape, amp_alpha=1, k=1):
@@ -23,3 +26,5 @@ def make_onef_img_color(shape, amp_alpha=1, k=1):
         img[:,:,i] = make_onef_img_grey(shape, amp_alpha, k)
     return img
         
+
+    
